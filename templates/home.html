@@ -1,0 +1,484 @@
+{% extends 'base.html' %}{% load static %}
+{% block content %}
+    <!--Main Slider Start-->
+    <section class="main-slider main-slider-style1">
+        <div class="swiper-container thm-swiper__slider" data-swiper-options='{"slidesPerView": 1, "loop": true,
+                "effect": "fade",
+                "pagination": {
+                "el": "#main-slider-pagination",
+                "type": "bullets",
+                "clickable": true
+                },
+                "navigation": {
+                "nextEl": "#main-slider__swiper-button-next",
+                "prevEl": "#main-slider__swiper-button-prev"
+                },
+                "autoplay": {
+                "delay": 5000
+                }}'>
+            <div class="swiper-wrapper">
+                <div class="slider-buttom-box">
+                    {% if slider_button.title1 %}
+                        <a class="style2" href="{{ slider_button.link1 }}">
+                            {{ slider_button.title1 }}<span class="icon-play-button"></span> </a>
+                    {% endif %}
+                    {% if slider_button.title2 %}
+                        <a class="style2" href="{{ slider_button.link2 }}">
+                            {{ slider_button.title2 }}<span class="icon-play-button"></span> </a>
+                    {% endif %}
+                </div>
+                {% for slider in sliders %}
+                    <!--Start Single Swiper Slide-->
+                    <div class="swiper-slide">
+                        <div class="image-layer" style="background-image: url({{ slider.image.url }});"></div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="main-slider-content">
+                                        <div class="main-slider-content__inner">
+                                            <div class="big-title">
+                                                <h2>{{ slider.title }}</h2>
+                                            </div>
+                                            <div class="text">
+                                                <p>{{ slider.description }}</p>
+                                            </div>
+                                            {% if slider.button %}
+                                                <div class="btns-box">
+                                                    <a class="btn-one" href="
+
+                                                            {% if slider.button_link %}{{ slider.button_link }}{% else %}#{% endif %}">
+                                                        <span class="txt">
+                                                            {{ slider.button }}
+                                                        </span> </a>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Single Swiper Slide-->
+                {% endfor %}
+
+            </div>
+
+            <!-- If we need navigation buttons -->
+            <div class="main-slider__nav">
+                <div class="swiper-button-prev" id="main-slider__swiper-button-next">
+                    <i class="icon-chevron left"></i>
+                </div>
+                <div class="swiper-button-next" id="main-slider__swiper-button-prev">
+                    <i class="icon-chevron right"></i>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--Main Slider End-->
+
+    <!--Start Features Style3 Area-->
+    <section class="features-style3-area">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xl-6">
+                    <div class="features-style3-img-box features-style3-img-box--style2">
+                        <div class="inner-img-bg"
+                             style="background-image: url({% static 'images/homepage/3.jpg' %});"></div>
+
+                    </div>
+                </div>
+
+                <div class="col-xl-6">
+                    <div class="features-style3-content">
+                        <div class="sec-title">
+                            <h5>Нормативные правовые акты НБКР, регулирующие деятельность кредитных союзов</h5>
+                        </div>
+                        <div class="text-box">
+                            <ul>
+                                {% for link in nbkr_links %}
+                                <li>
+                                    <a href="{{ link.url}}" target="_blank">
+                                        <div class="icon">
+                                            <span class="icon-checkbox-mark"></span>
+                                        </div>
+                                        <p>{{ link.title}}</p>
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--End Features Style3 Area-->
+
+    <!--Start Faq Style1 Area-->
+    <section class="faq-style1-area">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="faq-style1-title">
+                        <div class="sec-title">
+                            <h2>Часто задаваемые вопросы</h2>
+                            <div class="sub-title">
+                                <p>Можете найти ответы на все вопросы.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-xl-6">
+                    <div class="faq-style1__image">
+                        <div class="inner">
+                            <img src="{% static 'images/source/faq-style1__image.jpg' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6">
+                    <div class="faq-style1__content">
+                        <ul class="accordion-box">
+                            {% for faq in faqs|slice:"5" %}
+                                <li class="accordion block {% if forloop.first %}active-block{% endif %}">
+                                <div class="acc-btn {% if forloop.first %}active{% endif %}">
+                                    <div class="icon-outer"><i class="icon-right-arrow"></i></div>
+                                    <h3>{{ faq.question }}</h3>
+                                </div>
+                                <div class="acc-content {% if forloop.first %}current{% endif %}">
+                                    <p>{{ faq.answer }}</p>
+                                </div>
+                            </li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="faq-style1-bottom-box text-center">
+                        <p>Не нашли ответ, нажмите кнопку ниже чтобы получить больше ответов или свяжитесь с нами. <a href="{% url 'contacts' %}">Наши контакты</a></p>
+                        <div class="btns-box">
+                            <a class="btn-one" href="index.html#"> <span class="txt">Оставить заявку</span> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--End Faq Style1 Area-->
+
+    <!--Start Deals Area-->
+    <section class="deals-area">
+        <div class="auto-container">
+            <div class="deals-content-box">
+                <div class="owl-carousel owl-theme thm-owl__carousel deals-carousel-one owl-nav-style-one"
+                     data-owl-options='{
+                        "loop": true,
+                        "autoplay": true,
+                        "margin": 50,
+                        "nav": true,
+                        "dots": false,
+                        "smartSpeed": 500,
+                        "autoplayTimeout": 10000,
+                        "navText": ["<span class=\"left icon-right-arrow\"></span>","<span class=\"right icon-right-arrow\"></span>"],
+                        "responsive": {
+                                "0": {
+                                    "items": 1
+                                },
+                                "768": {
+                                    "items": 1
+                                },
+                                "992": {
+                                    "items": 1
+                                },
+                                "1550": {
+                                    "items": 1.4
+                                }
+                            }
+                        }'>
+
+
+                    <!--Start Single Deals Box-->
+                    <div class="single-deals-box">
+                        <div class="text-box">
+                            <div class="inner-title">
+                                <h4>ОАО "ФККС"</h4>
+                                <h2>Система межведомственного электронного взаимодействия "Тундук"</h2>
+                            </div>
+                            <p>При подключении к СМЭВ "Тундук", Вы экономите время и деньги.</p>
+                            <ul>
+                                <li>
+                                    <div class="inner">
+                                        <div class="icon">
+                                            <span class="icon-checkbox-mark"></span>
+                                        </div>
+                                        <div class="text">
+                                            <p>Техническое сопровождение<br> от 2000 сом</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="btns-box">
+                                <a class="btn-one" href="#contacts"> <span class="txt">Оставить заявку</span> </a>
+                            </div>
+                        </div>
+                        <div class="img-box">
+                            <div class="img-bg"
+                                 style="background-image: url({% static 'images/tunduk.png' %});"></div>
+                            <div class="shape-left-1"></div>
+                            <div class="shape-right-1"></div>
+                            <div class="shape-right-2"></div>
+                        </div>
+                    </div>
+                    <!--End Single Deals Box-->
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Deals Area-->
+
+    <!--Start EMI Calculator Area-->
+    <section class="emi-calculator-area">
+        <div class="container">
+            <div class="sec-title text-center">
+                <h2>Кредитный калькултяор</h2>
+                <div class="sub-title">
+                    <p>Можете рассчитать свой ежемесячный платеж.</p>
+                </div>
+            </div>
+            <div class="row"  id="loan-calc">
+                <div class="col-xl-12">
+                    <div class="emi-calculator-tab">
+
+                        <div class="emi-calculator-tab__button">
+                            <div class="emi-calculator-tab__button--bg"
+                                 style="background-image: url({% static 'images/source/emi-calculator.jpg' %});"></div>
+                        </div>
+
+                        <div class="emi-calculator-tab-content-box-outer">
+                            <div id="home-loan">
+                                    <div class="emi-calculator-tab-content-box-item">
+
+                                        <div class="range-box">
+                                            <div class="row">
+                                                <div class="col-lg-12 column">
+                                                    <div class="price-range-box">
+                                                        <div class="inner">
+                                                            <h4>Сумма займа</h4>
+                                                            <div class="price-range-slider"></div>
+                                                            <div class="range-input">
+                                                                <div class="input">
+                                                                    <input type="text" class="property-amount"
+                                                                           name="field-name" readonly="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right-box">
+                                                            <h5 class="property-amount"></h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12 column">
+                                                    <div class="loan-term-range-box">
+                                                        <div class="inner">
+                                                            <h4>Срок кредита <span>(мес)</span></h4>
+                                                            <div class="loan-term-range-slider"></div>
+                                                            <div class="range-input">
+                                                                <div class="input">
+                                                                    <input type="text" class="loan-term-range"
+                                                                           name="field-name" readonly="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right-box">
+                                                            <h5 class="loan-term-range"></h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12 column">
+                                                    <div class="interest-rate-range-box">
+                                                        <div class="inner">
+                                                            <h4>Процентная ставка</h4>
+                                                            <div class="interest-rate-range-slider"></div>
+                                                            <div class="range-input">
+                                                                <div class="input">
+                                                                    <input type="text" class="interest-rate-range"
+                                                                           name="field-name" readonly="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right-box">
+                                                            <h5 class="interest-rate-range"></h5>%
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="emi-calculator-output-box clearfix">
+                                            <div class="left-box">
+                                                <div class="top">
+                                                    <div class="icon">
+                                                        <span class="icon-loan-3"></span>
+                                                    </div>
+                                                    <div class="inner-title">
+                                                        <h3>Ежемесячная оплата</h3>
+                                                        <h2 class="total-amount"><span>cом</span></h2>
+                                                    </div>
+                                                </div>
+                                                <div class="btns-box">
+                                                    <a class="btn-one" href="#"> <span
+                                                            class="txt">Оставить заявку</span> </a>
+                                                </div>
+                                            </div>
+                                            <div class="right-box">
+                                                <ul>
+                                                    <li>
+                                                        <div class="inner inner-title">
+                                                            <div class="icon">
+                                                                <span class="icon-right-arrow"></span>
+                                                            </div>
+                                                            <div class="text">
+                                                                <a href="#">Сумма процентов</a>
+                                                                <p class="sum-of-interest"> <span>cом</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="inner inner-title">
+                                                            <div class="icon">
+                                                                <span class="icon-right-arrow"></span>
+                                                            </div>
+                                                            <div class="text">
+                                                                <a href="#">Общая сумма к оплате</a>
+                                                                <p class="total-amount-to-pay"> сом</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End EMI Calculator Area-->
+
+
+    <!--Start Main Contact Form Area-->
+    <section class="main-contact-form-area pdb100" id="contacts">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xl-6">
+                    <div class="contact-info-box-style1">
+                        <div class="box1"></div>
+                        <div class="title">
+                            <h2>Оставьте свой отзыв или жалобу</h2>
+                            <p>Стремимся помочь Вам удовлетворить все Ваши финансовые потребности.</p>
+                        </div>
+
+                        <ul class="contact-info-1">
+                            <li>
+                                <div class="icon">
+                                    <span class="icon-map"></span>
+                                </div>
+                                <div class="text">
+                                    <p>Наш адрес</p>
+                                    <h3>{{ settings.address }}</h3>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <span class="icon-clock"></span>
+                                </div>
+                                <div class="text">
+                                    <p>График работы</p>
+                                    <h3>{{ settings.work_time }}</h3>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <span class="icon-phone"></span>
+                                </div>
+                                <div class="text">
+                                    <p>Наши контакты</p>
+                                    <h3><a href="tel:{{ settings.phone_number }}">{{ settings.phone_number }}</a></h3>
+                                    <h3><a href="tel:{{ settings.phone_number_2 }}">{{ settings.phone_number_2 }}</a></h3>
+                                    <h3><a href="mailto:{{ settings.email }}">{{ settings.email }}</a></h3>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-xl-6">
+                    <div class="contact-form" style="background-color: #f5f8f7;">
+                        <form id="contact-form" name="contact_form" class="default-form2"
+                              action="{% url 'suggestion_form' %}" method="post">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <label>Ваше имя</label>
+                                <div class="input-box">
+                                    <input type="text" name="name" id="id_name" placeholder="Имя" required="">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Номер телефона</label>
+                                <div class="input-box">
+                                    <input type="text" name="phone_number" value="" id="id_phone_number"
+                                           placeholder="+996 555 55-55-55">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Отзыв / Предложение</label>
+                                <div class="input-box">
+                                        <textarea name="text" id="id_text" placeholder="Отзыв / Предложение"
+                                                  required=""></textarea>
+                                </div>
+                            </div>
+
+                            <div class="button-box">
+                                <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden"
+                                       value="">
+                                <button class="btn-one" type="submit" data-loading-text="Сообщение отправляется...">
+                                        <span class="txt">
+                                            Отправить сообщение
+                                        </span>
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--End Main Contact Form Area-->
+{% endblock %}

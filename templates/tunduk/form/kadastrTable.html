@@ -1,0 +1,25 @@
+<table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ФИО</th>
+                        <th scope="col">Идентификационный код единицы недвижимого имущества</th>
+                        <th scope="col">Адрес</th>
+                        <th scope="col">Дата запроса</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for object in object_list %}
+                    <tr>
+                        <th scope="row">{{ object.id }}</th>
+                        <td>{{ object.user }}</td>
+                        <td>{{ object.data.propCode }}</td>
+                        <td>{{ object.data.address }}</td>
+                        <td>{{object.created_at}}</td>
+                        <td><a href="{% url 'tunduk:kadastr-detail' object.created_at.year object.created_at.month object.pk object.uuid %}"
+                               class="btn-one">Подробнее</a></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>

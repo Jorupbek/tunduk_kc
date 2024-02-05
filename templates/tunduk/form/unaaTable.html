@@ -1,0 +1,23 @@
+<table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ФИО</th>
+                        <th scope="col">Запрашиваемый ИНН</th>
+                        <th scope="col">Дата запроса</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for object in object_list %}
+                    <tr>
+                        <th scope="row">{{ object.id }}</th>
+                        <td>{{ object.user }}</td>
+                        <td>{{ object.data.inn }}</td>
+                        <td>{{object.created_at}}</td>
+                        <td><a href="{% url 'tunduk:unaa-detail' object.created_at.year object.created_at.month object.pk object.uuid %}"
+                               class="btn-one">Подробнее</a></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>

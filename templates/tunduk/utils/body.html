@@ -1,0 +1,13 @@
+{% if 'infocom' in request.resolver_match.url_name %}
+    {% include 'tunduk/form/infocomData.html' %}
+{% elif 'unaa' in request.resolver_match.url_name %}
+    {% include 'tunduk/form/unaaData.html' %}
+{% elif 'minjyst' in request.resolver_match.url_name %}
+    {% include 'tunduk/form/minjystData.html' %}
+{% elif 'kadastr' in request.resolver_match.url_name %}
+    {% include 'tunduk/form/kadastrData.html' %}
+{% elif 'minselxoz' in request.resolver_match.url_name %}
+    {% include 'tunduk/form/minselxozData.html' %}
+{% else %}
+    Тундук
+{% endif %}

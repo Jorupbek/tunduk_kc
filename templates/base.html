@@ -1,0 +1,128 @@
+{% load static %}<!DOCTYPE html>
+<html>
+
+<head class="noprint">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %} Главная {% endblock %} | Финансовая компания кредитных союзов</title>
+    <!-- Favicons Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicons/favicon.ico' %}"/>
+    <meta name="description" content="Финансовая компания кредитных союзов"/>
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'vendors/animate/animate.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendors/animate/custom-animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendors/fontawesome/css/all.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendors/jquery-ui/jquery-ui.css' %}"/>
+
+    <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.theme.default.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendors/swiper/swiper.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendors/thm-icons/style.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/language-switcher/polyglot-language-switcher.css' %}">
+    <!-- Module css -->
+    <link rel="stylesheet" href="{% static 'css/module-css/01-header-section.css' %}">
+    <link rel="stylesheet" href="{% static 'css/module-css/02-banner-section.css' %}">
+    <link rel="stylesheet" href="{% static 'css/module-css/03-about-section.css' %}">
+    <link rel="stylesheet" href="{% static 'css/module-css/04-fact-counter-section.css' %}">
+    <link rel="stylesheet" href="{% static 'css/module-css/05-testimonial-section.css' %}">
+    <link rel="stylesheet" href="{% static 'css/module-css/06-partner-section.css' %}">
+    <link rel="stylesheet" href="{% static 'css/module-css/07-footer-section.css' %}">
+    <link rel="stylesheet" href="{% static 'css/module-css/08-blog-section.css' %}">
+    <link rel="stylesheet" href="{% static 'css/module-css/09-breadcrumb-section.css' %}">
+    <link rel="stylesheet" href="{% static 'css/module-css/10-contact.css' %}">
+
+    <!-- Template styles -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/color-2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}"/>
+    {% block static %}
+
+    {% endblock %}
+</head>
+
+
+<body>
+
+<!-- Start preloader -->
+<div class="loader-wrap ">
+    <div class="preloader">
+        <div class="preloader-close">x</div>
+        <div id="handle-preloader" class="handle-preloader">
+            <div class="animation-preloader">
+                <div class="txt-loading">
+                    <span data-text-preloader="Ф" class="letters-loading">
+                        Ф
+                    </span> <span data-text-preloader="К" class="letters-loading">
+                        К
+                    </span> <span data-text-preloader="К" class="letters-loading">
+                        К
+                    </span> <span data-text-preloader="С" class="letters-loading">
+                        С
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End preloader -->
+
+
+<div class="page-wrapper">
+    <header class="main-header main-header-style1 noprint">
+        {% include 'utils/header.html' %}
+    </header>
+    <div class="stricky-header stricked-menu main-menu noprint">
+        <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+    </div><!-- /.stricky-header -->{% block content %}
+
+    {% endblock %}
+    <!--Start footer area -->
+    <footer class="footer-area noprint">
+        {% include 'utils/footer.html' %}
+    </footer>
+    <!--End footer area-->
+</div>
+<!-- /.page-wrapper -->
+
+
+<div class="mobile-nav__wrapper noprint">
+    {% include 'utils/mobile_nav.html' %}
+</div>
+
+
+<div class="search-popup noprint">
+    <div class="search-popup__overlay search-toggler"></div>
+    <div class="search-popup__content noprint">
+    </div>
+</div>
+
+
+<script src="{% static 'vendors/jquery/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'vendors/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js' %}"></script>
+<script src="{% static 'vendors/jquery-appear/jquery.appear.min.js' %}"></script>
+<script src="{% static 'vendors/jquery-migrate/jquery-migrate.min.js' %}"></script>
+<script src="{% static 'vendors/jquery-ui/jquery-ui.js' %}"></script>
+<script src="{% static 'vendors/jquery-validate/jquery.validate.min.js' %}"></script>
+
+<script src="{% static 'vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+<script src="{% static 'vendors/swiper/swiper.min.js' %}"></script>
+
+<script src="{% static 'vendors/language-switcher/jquery.polyglot.language.switcher.js' %}"></script>
+<script src="{% static 'vendors/aos/aos.js' %}"></script>
+<script src="{% static 'vendors/wow/wow.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+{% block js %}
+
+{% endblock %}
+</body>
+
+</html>

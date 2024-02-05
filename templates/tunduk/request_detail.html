@@ -1,0 +1,40 @@
+{% extends 'base.html' %}{% load static %}{% block title %}Тундук{% endblock %}{% block content %}<!--Start breadcrumb area-->
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/print.css' %}">{% endblock %}
+<section class="breadcrumb-area noprint">
+    <div class="breadcrumb-area-bg"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content">
+                    <div class="title" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="500">
+                        <h2>{% include 'tunduk/utils/header.html' %}</h2>
+                    </div>
+                    <div class="breadcrumb-menu" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="500">
+                        <ul>
+                            <li><a href="{% url 'tunduk:tunduk-controller' %}">Главная</a></li>
+                            <li><a href="{% url 'tunduk:tunduk-controller' %}">Тундук</a></li>
+                            <li><a href="{% include 'tunduk/utils/request_url.html' %}">Список запросов{% include 'tunduk/utils/header.html' %}</a></li>
+                            <li class="active">{% include 'tunduk/utils/header.html' %}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!--End breadcrumb area--><!--Start Accounts Style1 Area-->
+<section class="account-style1-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 noprint">
+                <svg height="20" onclick="print()" class="noprint"><path d="M4,2h8v2h1V1H3v3h1M0,5v6h3v1l3,3h7v-4h3V5m-3,2v1H12v6H6V12H4V8H3V7m2,1h6v1H5m0,1h6v1H5"></path></svg>
+            </div>
+            <div class="col-xl-12 col-lg-12 print">
+                {% include 'tunduk/utils/body.html' %}
+            </div>
+            <svg height="100" width="100" onclick="print()" class="noprint"><path d="M4,2h8v2h1V1H3v3h1M0,5v6h3v1l3,3h7v-4h3V5m-3,2v1H12v6H6V12H4V8H3V7m2,1h6v1H5m0,1h6v1H5"></path></svg>
+        </div>
+    </div>
+</section><!--End Accounts Style1 Area-->
+
+{% endblock %}

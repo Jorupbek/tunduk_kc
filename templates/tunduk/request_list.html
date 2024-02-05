@@ -1,0 +1,41 @@
+{% extends 'base.html' %}{% load static %}{% block title %}{% include 'tunduk/utils/header.html' %}{% endblock %}{% block content %}<!--Start breadcrumb area-->
+<section class="breadcrumb-area">
+    <div class="breadcrumb-area-bg"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content">
+                    <div class="title" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="500">
+                        <h2>{% include 'tunduk/utils/header.html' %}</h2>
+                    </div>
+                    <div class="breadcrumb-menu" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="500">
+                        <ul>
+                            <li><a href="{% url 'tunduk:tunduk-controller' %}">Главная</a></li>
+                            <li><a href="{% url 'tunduk:tunduk-controller' %}">Тундук</a></li>
+                            <li class="active">{% include 'tunduk/utils/header.html' %}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!--End breadcrumb area--><!--Start Accounts Style1 Area-->
+<section class="account-style1-area">
+    <div class="container">
+        <div class="sec-title text-center mb-5">
+            <h2>Список запрошенных данных</h2>
+        </div>
+        <div class="row">
+
+            <!--Start Single Account Box Style1-->
+            <div class="col-xl-12 col-lg-12">
+                {% include 'tunduk/utils/listBody.html' %}
+            </div>
+            <!--End Single Account Box Style1-->
+
+        </div>
+
+    </div>
+</section><!--End Accounts Style1 Area-->
+
+{% endblock %}

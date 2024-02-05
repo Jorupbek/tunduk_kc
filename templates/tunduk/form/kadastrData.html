@@ -1,0 +1,86 @@
+{% load static %}
+<h4 class="main-print-header">Выписка из электронных сервисов Государственных органов Кыргызской Республики</h4>
+<h6 class="print-header">Информация из Единого государственного реестра прав на недвижимое имущество</h6>
+<div class="col-xl-12 col-lg-12 print">
+    <a href="{{object.file.url}}" target="_blank" class="btn-one btn btn-block noprint">Скачать файл</a>
+    <hr>
+    <table class="table table-hover">
+        <tr>
+            <th scope="col">Идентификационный код единицы недвижимого имущества</th>
+            <td>{{object.data.propCode}}</td>
+        </tr>
+        <tr>
+            <th scope="col">Адрес</th>
+            <td>{{object.data.address}}</td>
+        </tr>
+        <tr>
+            <th scope="col">Форма собственности</th>
+            <td>{{object.data.ownForm}}</td>
+        </tr>
+        <tr>
+            <th scope="col">Вид недвижимости</th>
+            <td>{{object.data.type}}</td>
+        </tr>
+        <tr>
+            <th scope="col">Форма использования</th>
+            <td>{{object.data.forType}}</td>
+        </tr>
+        <tr>
+            <th scope="col">Целевое назначение</th>
+            <td>{{object.data.forUseType}}</td>
+        </tr>
+    </table>
+</div>
+<hr>
+
+<p class="note">Примечание: Сведения, содержащие в настоящей электронной выписке, являются актуальными на дату
+    запроса!</p>
+<p class="footer"><b>Дата запроса:</b> {{object.created_at|date:'d M Y H:i'}}<br><b>Распечатано:</b>
+    {% now 'd M Y H:i' %}<br><b>Пользователь:</b>
+    {{object.user.get_full_name}} </p>
+
+<style>
+    h4 {
+        text-align: center;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid #000;
+    }
+
+    td {
+        padding: 1px;
+        text-align: center;
+    }
+
+    th {
+        padding: 10px;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .note {
+        margin-top: 10px;
+        font-style: italic;
+    }
+
+    .footer {
+        margin-top: 20px;
+        text-align: right;
+        font-size: 12px;
+    }
+    .print-header {
+        padding: 10px 0;
+        background: #eee;
+        print-color-adjust: inherit;
+    }
+</style>

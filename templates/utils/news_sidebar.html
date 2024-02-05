@@ -1,0 +1,36 @@
+{% load static %}
+<!--Start Thm Sidebar Box-->
+<div class="col-xl-3 col-lg-7">
+    <div class="thm-sidebar-box">
+        <!--Start Single Sidebar Box-->
+        <div class="single-sidebar-box">
+            <div class="sidebar-title">
+                <div class="dot-box"></div>
+                <h3>Поиск</h3>
+            </div>
+            <div class="sidebar-search-box">
+                <form class="search-form" action="{% url 'news:news-search' %}">
+                    {% csrf_token %}
+                    <input placeholder="Введите текст поиска" type="text" name="query" id="query">
+                    <button type="submit">
+                        <i class="icon-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!--End Single Sidebar Box-->
+        <!--Start Single Sidebar Box-->
+        <div class="single-sidebar-box">
+            <div class="sidebar-title">
+                <div class="dot-box"></div>
+                <h3>Категории</h3>
+            </div>
+            <ul class="sidebar-categories-box">
+                {% for category in categories %}
+                    <li><a href="{% url 'news:news-list-by-category' category_slug=category.slug %}">{{ category.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!--End Single Sidebar Box-->
+    </div>
+</div><!--End Thm Sidebar Box-->

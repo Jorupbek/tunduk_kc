@@ -1,0 +1,13 @@
+{% if 'infocom' in request.resolver_match.url_name %}
+    Инфоком
+{% elif 'unaa' in request.resolver_match.url_name %}
+    Унаа
+{% elif 'minjyst' in request.resolver_match.url_name %}
+    Мин. юстиции
+{% elif 'kadastr' in request.resolver_match.url_name %}
+    Кадастр
+{% elif 'minselxoz' in request.resolver_match.url_name %}
+    Мин. Сель. Хоз
+{% else %}
+Тундук
+{% endif %}

@@ -1,0 +1,78 @@
+{% load static %}
+<h4 class="main-print-header">Выписка из электронных сервисов Государственных органов Кыргызской Республики</h4>
+<h6 class="print-header">Информация из Министерства Сельского хозяйства</h6>
+<div class="col-xl-12 col-lg-12 print">
+    <hr>
+    <h4>Данные получены для пользователя "<b>{{object.data.inn}}</b>"</h4>
+    <table class="table table-hover">
+        <tr>
+            <th scope="col">Тип</th>
+            <th scope="col">Пол</th>
+            <th scope="col">Возраст</th>
+        </tr>
+        {% for item in object.data.items %}
+        <tr>
+            <th>{{item.type}}</th>
+            <th>{{item.gender}}</th>
+            <th>{{item.age}}</th>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+<hr>
+
+<p class="note">Примечание: Сведения, содержащие в настоящей электронной выписке, являются актуальными на дату
+    запроса!</p>
+<p class="footer"><b>Дата запроса:</b> {{object.created_at|date:'d M Y H:i'}}<br><b>Распечатано:</b>
+    {% now 'd M Y H:i' %}<br><b>Пользователь:</b>
+    {{object.user.get_full_name}} </p>
+
+<style>
+    h4 {
+        text-align: center;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid #000;
+    }
+
+    td {
+        padding: 1px;
+        text-align: center;
+    }
+
+    th {
+        padding: 10px;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .note {
+        margin-top: 10px;
+        font-style: italic;
+    }
+
+    .footer {
+        margin-top: 20px;
+        text-align: right;
+        font-size: 12px;
+    }
+
+    .print-header {
+        padding: 10px 0;
+        background: #eee;
+        print-color-adjust: inherit;
+    }
+</style>

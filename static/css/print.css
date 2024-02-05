@@ -1,0 +1,32 @@
+@page {
+    margin: 10mm 10mm 10mm 20mm;
+}
+
+@media print {
+    html, body {
+        width: 210mm;
+        font-size: 14px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 180mm;
+    }
+
+    .noprint, footer, header, scroll-to-target, scroll-to-top,
+    search-popup, mobile-nav__wrapper, footer-area {
+        display: none !important;
+    }
+
+    .print {
+        display: block;
+    }
+
+    .account-style1-area, footer {
+        padding: 0;
+    }
+
+    .main-print-header {
+        margin-top: 20px;
+    }
+}

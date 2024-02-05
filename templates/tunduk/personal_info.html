@@ -1,0 +1,105 @@
+{% extends 'base.html' %}{% load static %}{% block title %}Получение выписки{% endblock %}{% block style %}
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">{% endblock %}{% block content %}<!--Start breadcrumb area-->
+<section class="breadcrumb-area">
+    <div class="breadcrumb-area-bg"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content">
+                    <div class="title" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="500">
+                        <h2>Получение выписки</h2>
+                    </div>
+                    <div class="breadcrumb-menu" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="500">
+                        <ul>
+                            <li><a href="{% url 'tunduk:tunduk-controller' %}">Главная</a></li>
+                            <li><a href="{% url 'tunduk:tunduk-controller' %}">Тундук</a></li>
+                            <li class="active">Получение выписки</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!--End breadcrumb area--><!--Start Accounts Style1 Area-->
+<section class="account-style1-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% if messages %}
+                <ul class="messagelist">
+                    {% for message in messages %}
+                        <li {% if message.tags %}class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <ul>
+                    {% for key, value in data.items %}
+                    <li><b>{{ key }}</b>: {{ value }}</li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+            <div class="col-md-12">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="#infocom" class="nav-link active" data-toggle="tab">Инфоком</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#unaa" class="nav-link" data-toggle="tab">Унаа</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#minjyst" class="nav-link" data-toggle="tab">Министерство Юстиции</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#kadastr" class="nav-link" data-toggle="tab">Кадастр</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#minselxoz" class="nav-link" data-toggle="tab">Мин. Сель. Хоз</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="infocom">
+                        <form method="post" action="{% url 'tunduk:infocom-post' %}">
+                            {% csrf_token %} {% include "tunduk/form/requestForm.html" with form=form %}
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="unaa">
+                        <form method="post" action="{% url 'tunduk:unaa-post' %}">
+                            {% csrf_token %} {% include "tunduk/form/requestForm.html" with form=unaa_form %}
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="minjyst">
+                        <form method="post" action="{% url 'tunduk:minjyst-post' %}">
+                            {% csrf_token %} {% include "tunduk/form/requestForm.html" with form=unaa_form %}
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="kadastr">
+                        <form method="post" action="{% url 'tunduk:kadastr-post' %}">
+                            {% csrf_token %} {% include "tunduk/form/requestForm.html" with form=eni_form %}
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="minselxoz">
+                        <form method="post" action="{% url 'tunduk:minselxoz-post' %}">
+                            {% csrf_token %} {% include "tunduk/form/requestForm.html" with form=unaa_form %}
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section><!--End Accounts Style1 Area-->
+<style>
+    li.warning {
+    font-size: 30px;
+    margin: 20px 0;
+    color: red;
+}
+</style>
+{% endblock %}{% block js %}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>{% endblock %}

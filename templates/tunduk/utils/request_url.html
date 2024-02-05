@@ -1,0 +1,13 @@
+{% if 'infocom-detail' in request.resolver_match.view_name %}
+    {% url 'tunduk:infocom-list' %}
+{% elif 'unaa-detail' in request.resolver_match.view_name %}
+    {% url 'tunduk:unaa-list' %}
+{% elif 'minjyst-detail' in request.resolver_match.view_name %}
+    {% url 'tunduk:minjyst-list' %}
+{% elif 'kadastr-detail' in request.resolver_match.view_name %}
+    {% url 'tunduk:kadastr-list' %}
+{% elif 'minselxoz-detail' in request.resolver_match.view_name %}
+    {% url 'tunduk:minselxoz-list' %}
+{% else %}
+    Тундук
+{% endif %}

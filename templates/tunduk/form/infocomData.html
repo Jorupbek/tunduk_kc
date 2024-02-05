@@ -1,0 +1,121 @@
+{% load static %}
+<h4 class="main-print-header">Выписка из электронных сервисов Государственных органов Кыргызской Республики</h4>
+<div class="flex-container">
+    <div class="left-column">
+        <!-- Добавляем изображение гражданина в левую колонку -->
+        <img src="{% if object.file %}{{object.file.url}}{% else %}{% static 'images/source/no-img.gif' %}{% endif %}" alt="Изображение гражданина {{object.data.name}}">
+    </div>
+    <div class="right-column">
+        <p><span>ПИН:</span> <span class="rigth-text">{{object.data.pin}}</span></p>
+        <p><span>Фамилия:</span> <span class="rigth-text">{{object.data.surname}}</span></p>
+        <p><span>Имя:</span> <span class="rigth-text">{{object.data.name}}</span></p>
+        <p><span>Отчество:</span> <span class="rigth-text">{{object.data.patronymic}}</span></p>
+        <p><span>Пол:</span> <span class="rigth-text">{{object.data.gender}}</span></p>
+        <p><span>Дата рождения:</span> <span class="rigth-text">{{object.data.dateOfBirth}}</span></p>
+        <p><span>Номер документа: {{object.data.passportSeries}}</span> <span class="rigth-text">{{object.data.passportNumber}}</span>
+        </p>
+        <p><span>Дата выдачи:</span> <span class="rigth-text">{{object.data.issuedDate}}</span></p>
+        <p><span>Срок действия:</span> <span class="rigth-text">{{object.data.expiredDate}}</span></p>
+        <p><span>Семейное положение:</span> <span class="rigth-text">{{object.data.maritalStatus}}</span></p>
+        <p><span>Адрес регистрации:</span> <span>{{object.data.message}}</span></p>
+    </div>
+</div>
+<hr>
+<div class="addr-container">
+    <h6 class="print-header">Информация из АИС «Санарип Аймак»</h6>
+    <div>
+        <p>Фактический адрес: {% if object.data.sanarip %}{{object.data.sanarip.address}}{% endif %}</p>
+    </div>
+</div>
+
+<hr><h6 class="print-header">Состав семьи</h6>
+<table>
+    <tr>
+        <td>№</td>
+        <td>Ф.И.О.</td>
+        <td>Вид отношений</td>
+    </tr>
+    {% for member in object.data.sanarip.members %}
+        <tr>
+            <td></td>
+            <td>{{member.name}}</td>
+            <td>{{member.role}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<p class="note">Примечание: Сведения, содержащие в настоящей электронной выписке, являются актуальными на дату
+    запроса!</p>
+<p class="footer"><b>Дата запроса:</b> {{object.created_at|date:'d M Y H:i'}}<br><b>Распечатано:</b>
+    {% now 'd M Y H:i' %}<br><b>Пользователь:</b>
+    {{object.user.get_full_name}} </p>
+
+<style>
+    h4 {
+        text-align: center;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid #000;
+    }
+
+    td {
+        padding: 1px;
+        text-align: center;
+    }
+
+    th {
+        padding: 10px;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .note {
+        margin-top: 10px;
+        font-style: italic;
+    }
+
+    .footer {
+        margin-top: 20px;
+        text-align: right;
+        font-size: 12px;
+    }
+
+    .flex-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .addr-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .left-column {
+        border: 1px solid black;
+        padding: 5px;
+        margin: 10px;
+    }
+
+    .rigth-text {
+        float: right;
+    }
+
+    .print-header {
+        padding: 10px 0;
+        background: #eee;
+        print-color-adjust: inherit;
+    }
+
+</style>

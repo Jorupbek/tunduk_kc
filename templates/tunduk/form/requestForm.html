@@ -1,0 +1,21 @@
+{% load crispy_forms_tags %}
+
+<!--Start Single Account Box Style1-->
+    {% for field in form.visible_fields %}
+        <div class="form-group" style="margin-bottom:10px">
+            <div class="input-box">
+                {{ field|as_crispy_field }}
+                {% for error in field.errors %}
+                    <span class="help-block">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+    {% endfor %}
+
+<!--End Single Account Box Style1-->
+<button class="btn-one btn btn-block" type="submit">
+    <span class="txt">
+        Получить данные
+    </span>
+</button>
