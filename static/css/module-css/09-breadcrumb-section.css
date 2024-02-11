@@ -48,6 +48,7 @@
     flex-wrap: wrap;
     padding: 60px 0 0px;
     z-index: 10;
+    background: #0c59de;
 }
 
 .breadcrumb-area .title {
