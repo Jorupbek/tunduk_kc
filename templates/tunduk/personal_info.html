@@ -27,36 +27,46 @@
         <div class="row">
             <div class="col-md-8">
                 {% if messages %}
-                <ul class="messagelist">
-                    {% for message in messages %}
-                        <li {% if message.tags %}class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-                    {% endfor %}
-                </ul>
+                    <ul class="messagelist">
+                        {% for message in messages %}
+                            <li {% if message.tags %}class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
                 {% endif %}
                 <ul>
                     {% for key, value in data.items %}
-                    <li><b>{{ key }}</b>: {{ value }}</li>
+                        <li><b>{{ key }}</b>: {{ value }}</li>
                     {% endfor %}
                 </ul>
 
             </div>
             <div class="col-md-12">
                 <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a href="#infocom" class="nav-link active" data-toggle="tab">Инфоком</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#unaa" class="nav-link" data-toggle="tab">Унаа</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#minjyst" class="nav-link" data-toggle="tab">Министерство Юстиции</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#kadastr" class="nav-link" data-toggle="tab">Кадастр</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#minselxoz" class="nav-link" data-toggle="tab">Мин. Сель. Хоз</a>
-                    </li>
+                    {% if user.company.infocom %}
+                        <li class="nav-item">
+                            <a href="#infocom" class="nav-link active" data-toggle="tab">Инфоком</a>
+                        </li>
+                    {% endif %}
+                    {% if user.company.unaa %}
+                        <li class="nav-item">
+                            <a href="#unaa" class="nav-link" data-toggle="tab">Унаа</a>
+                        </li>
+                    {% endif %}
+                    {% if user.company.minjyst %}
+                        <li class="nav-item">
+                            <a href="#minjyst" class="nav-link" data-toggle="tab">Министерство Юстиции</a>
+                        </li>
+                    {% endif %}
+                    {% if user.company.kadastr %}
+                        <li class="nav-item">
+                            <a href="#kadastr" class="nav-link" data-toggle="tab">Кадастр</a>
+                        </li>
+                    {% endif %}
+                    {% if user.company.minselxoz %}
+                        <li class="nav-item">
+                            <a href="#minselxoz" class="nav-link" data-toggle="tab">Мин. Сель. Хоз</a>
+                        </li>
+                    {% endif %}
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="infocom">
@@ -94,12 +104,12 @@
 </section><!--End Accounts Style1 Area-->
 <style>
     li.warning {
-    font-size: 30px;
-    margin: 20px 0;
-    color: red;
-}
+        font-size: 30px;
+        margin: 20px 0;
+        color: red;
+    }
 </style>
 {% endblock %}{% block js %}
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>{% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>{% endblock %}

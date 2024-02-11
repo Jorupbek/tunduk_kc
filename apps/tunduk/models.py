@@ -31,6 +31,26 @@ class Company(models.Model):
         help_text='Название участника передаваемый от тундук, пример: akzhol_subsystem',
         max_length=100
     )
+    infocom = models.BooleanField(
+        default=True,
+        verbose_name='Инфоком',
+    )
+    unaa = models.BooleanField(
+        default=False,
+        verbose_name='Унаа',
+    )
+    minjyst = models.BooleanField(
+        default=False,
+        verbose_name='Мин. Юст',
+    )
+    kadastr = models.BooleanField(
+        default=False,
+        verbose_name='Кадастр',
+    )
+    minselxoz = models.BooleanField(
+        default=False,
+        verbose_name='Мин. Сель. Хоз',
+    )
 
     def __str__(self):
         return f'{self.name}'
@@ -38,3 +58,4 @@ class Company(models.Model):
     class Meta:
         verbose_name = 'Компания'
         verbose_name_plural = 'Компании'
+
