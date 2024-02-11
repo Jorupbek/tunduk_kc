@@ -40,7 +40,7 @@ class TundukRequestLogAdmin(admin.ModelAdmin):
         return False
 
     def has_module_permission(self, request):
-        return False
+        return request.user.is_superuser
 
     def user_company(self, obj):
         return obj.user.company
