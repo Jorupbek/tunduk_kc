@@ -29,7 +29,7 @@ Blog Style1 Area Css
     position: relative;
     display: block;
     overflow: hidden;
-    background-color: #646464;
+    background-color: #0c59de;
 }
 
 .single-blog-style1 .img-holder .inner::before {
@@ -634,7 +634,7 @@ Blog Style1 Area Css
     position: relative;
     display: block;
     overflow: hidden;
-    background-color: #646464;
+    background-color: #0c59de;
 }
 
 .blog-details-img-box .inner img {
@@ -995,7 +995,7 @@ Blog Style1 Area Css
     left: 0;
     width: 140px;
     height: 140px;
-    background-color: #646464;
+    background-color: #0c59de;
     border-radius: 50%;
 }
 
@@ -1491,7 +1491,7 @@ Blog Style1 Area Css
     position: relative;
     display: block;
     overflow: hidden;
-    background-color: #646464;
+    background-color: #0c59de;
 }
 
 .sidebar-blog-post-single .img-box img {
