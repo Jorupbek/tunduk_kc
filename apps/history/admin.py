@@ -34,13 +34,13 @@ class TundukRequestLogAdmin(admin.ModelAdmin):
         return False
 
     def has_change_permission(self, request, obj=None):
-        return request.user.is_superuser
+        return False
 
     def has_delete_permission(self, request, obj=None):
-        return request.user.is_superuser
+        return False
 
     def has_module_permission(self, request):
-        return request.user.is_superuser
+        return False
 
     def user_company(self, obj):
         return obj.user.company
