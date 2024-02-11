@@ -4,8 +4,6 @@ from xml.etree.ElementTree import XML
 
 import requests
 
-from core.settings import IP_ADDR, SUBSYSTEM_CODE, MEMBER_CODE
-from utils.constants import HEADERS
 from utils.utils import byte_to_file
 
 
@@ -21,12 +19,16 @@ class TundukSystem(ABC):
     system_code = None
     xmlns = None
     xmlns_url = None
-    HEADERS = HEADERS
+    HEADERS = {
+        'Content-Type': 'text/xml; charset=utf-8',
+        'accept': 'application/json'
+    }
 
-    def __init__(self, service_code, version='v1', road_instance='central-server'):
+    def __init__(self, service_code, user=None, version='v1', road_instance='central-server'):
         self.service_code = service_code
         self.version = version
         self.road_instance = road_instance
+        self.user = user
 
     @property
     @abstractmethod
@@ -48,7 +50,7 @@ class TundukSystem(ABC):
         """
         Формирование URL адреса
         """
-        url = (f"http://{IP_ADDR}/{self.road_instance}/GOV/"
+        url = (f"http://{self.user.company.ip_addr}/{self.road_instance}/GOV/"
                f"{self.member_code}/{self.system_code}/{self.service_code}/"
                f"{self.version}")
 
@@ -90,12 +92,20 @@ class TundukSystem(ABC):
                     <xro:client iden:objectType=\"SUBSYSTEM\">
                         <iden:xRoadInstance>central-server</iden:xRoadInstance>
                         <iden:memberClass>COM</iden:memberClass>
-                        <iden:memberCode>{MEMBER_CODE}</iden:memberCode>
-                        <iden:subsystemCode>{SUBSYSTEM_CODE}</iden:subsystemCode>
+                        <iden:memberCode>{self.user.company.member_code}</iden:memberCode>
+                        <iden:subsystemCode>{self.user.company.subsystem_code}</iden:subsystemCode>
                     </xro:client>
                 </soapenv:Header>
             """
         return soap_header
+
+    @property
+    def get_headers(self):
+        headers = dict(self.__class__.HEADERS)
+        if self.user and self.user.company:
+            headers[
+                'X-Road-Client'] = f'central-server/COM/{self.user.company.member_code}/{self.user.company.subsystem_code}'
+        return headers
 
     def get_soap_body(self, request_data):
         soap_body = \
@@ -134,7 +144,7 @@ class TundukSystem(ABC):
         response = requests.request(
             method="POST",
             url=self.get_url,
-            headers=self.HEADERS,
+            headers=self.get_headers,
             data=data
         )
 
@@ -143,7 +153,7 @@ class TundukSystem(ABC):
     def parse_xml_data(self, response, fields):
         soup = bs(response.content, features="lxml-xml")
         result = {}
-        
+
         if 'faultcode' in response.text:
             return {'Ошибка': soup.find('faultstring').text}
 

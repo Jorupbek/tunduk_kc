@@ -1,6 +1,8 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
+from apps.tunduk.models import Company
+
 
 class InfocomForm(forms.Form):
     inn = forms.CharField(label='ИНН', widget=forms.TextInput(
@@ -52,3 +54,14 @@ class ENICodeForm(forms.Form):
         return self.cleaned_data
 
 
+class PasswordInputWidget(forms.TextInput):
+    input_type = 'password'
+
+
+class CompanyForm(forms.ModelForm):
+    class Meta:
+        model = Company
+        fields = '__all__'
+        widgets = {
+            'infocom_secret_key': PasswordInputWidget(),
+        }

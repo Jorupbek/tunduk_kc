@@ -1,15 +1,27 @@
 from decimal import Decimal
 
-from core.settings import IP_ADDR
 from utils.get_data import get_request
 
 
 class Kadastr(object):
     service_amount = Decimal('175.75')
     system_name = 'Kadastr'
+    HEADERS = {
+        'Content-Type': 'text/xml; charset=utf-8',
+        'accept': 'application/json'
+    }
 
-    def __init__(self):
-        self.url = f'http://{IP_ADDR}/r1/central-server/GOV/70000019/dkrpni-service/'
+    def __init__(self, user=None):
+        self.user = user
+        self.url = f'http://{self.user.company.ip_addr}/r1/central-server/GOV/70000019/dkrpni-service/'
+
+    @property
+    def get_headers(self):
+        headers = dict(self.__class__.HEADERS)
+        if self.user and self.user.company:
+            headers[
+                'X-Road-Client'] = f'central-server/COM/{self.user.company.member_code}/{self.user.company.subsystem_code}'
+        return headers
 
     def getPropertyInfo(self, eni_code):
         """
@@ -40,7 +52,7 @@ class Kadastr(object):
             }
         """
         url = self.url.join(['api_GetPropertyInfo', eni_code])
-        response = get_request(url, method="GET")
+        response = get_request(url, headers=self.get_headers, method="GET")
 
         return response
 
@@ -49,7 +61,7 @@ class Kadastr(object):
         Выписка прав и ограничений на ЕНИ в формате Pdf.
         """
         url = ''.join([self.url, 'api_GetPropertyPdf/', eni_code])
-        response = get_request(url, method="GET")
+        response = get_request(url, headers=self.get_headers, method="GET")
 
         return response
 
@@ -58,7 +70,7 @@ class Kadastr(object):
         Выписка истории прав и ограничений в формате Pdf
         """
         url = self.url.join(['api_GetPropertyHistoryPdf', eni_code])
-        response = get_request(url, method="GET")
+        response = get_request(url, headers=self.get_headers, method="GET")
 
         return response
 
@@ -86,7 +98,7 @@ class Kadastr(object):
 
         """
         url = self.url.join(['api_TechParamPdf', eni_code])
-        response = get_request(url, method="GET")
+        response = get_request(url, headers=self.get_headers, method="GET")
 
         return response
 
@@ -109,6 +121,6 @@ class Kadastr(object):
 
         """
         url = self.url.join(['api_GetPersonRightsPdf', eni_code, full_name])
-        response = get_request(url, method="GET")
+        response = get_request(url, headers=self.get_headers, method="GET")
 
         return response

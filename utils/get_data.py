@@ -1,14 +1,12 @@
 import requests
 
-from utils.constants import HEADERS
 
-
-def get_request(url, method="POST", data=None):
+def get_request(url, headers, method="POST", data=None):
     try:
         response = requests.request(
             method=method,
             url=url,
-            headers=HEADERS,
+            headers=headers,
             data=data
         )
 

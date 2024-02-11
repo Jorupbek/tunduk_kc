@@ -1,25 +1,12 @@
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
-    "site_title": "ФККС",
+    "site_title": "Тундук",
 
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
     "site_brand": " ",
 
-    # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
-    "login_logo": "images/logo-fccu.png",
-
-    # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "images/logo-fccu.png",
-
-
-    # CSS classes that are applied to the logo above
-    "site_logo_classes": "img-square",
-
-    # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
-    "site_icon": "images/logo-fccu.png",
-
     # Welcome text on the login screen
-    "welcome_sign": 'Панель управления сайтом компани ОАО "ФККС"',
+    "welcome_sign": 'Панель управления тундук',
 
     # Copyright on the footer
     "copyright": "Infis studio",
@@ -35,18 +22,13 @@ JAZZMIN_SETTINGS = {
         {"name": "Главная", "url": "admin:index", "permissions": ["auth.view_user"]},
 
         # Url that gets reversed (Permissions can be added)
-        {"name": "Перейти на сайт", "url": "home", "new_window": True},
+        {"name": "Перейти на сайт", "url": "tunduk:tunduk-controller", "new_window": True},
 
         # external url that opens in a new window (Permissions can be added)
         # {"name": "Пользователи", "url": "admin:account", "permissions": ["auth.view_user"]},
 
         # model admin to link to (Permissions checked against model)
         {"model": "auth.User"},
-
-        # App with dropdown menu to all its models pages (Permissions checked against models)
-        {"model": "pages.vacancy"},
-        {"model": "news.news"},
-        {"model": "wallet.wallet"}
     ],
 
     #############

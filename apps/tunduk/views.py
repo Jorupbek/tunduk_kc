@@ -95,7 +95,7 @@ class InfocomRequestedDetail(TundukAbstractClass):
 
         if form.is_valid():
             # Получение данных из СМЭВ Тундук
-            infocom = Infocom('bankPinService')
+            infocom = Infocom('bankPinService', request.user)
             result, response = infocom.post_bankPinService(form.cleaned_data)
 
             if response:
@@ -202,7 +202,7 @@ class KadastrRequestedDetail(TundukAbstractClass):
         form = ENICodeForm(request.POST)
         if form.is_valid():
             # Получение данных из СМЭВ Тундук
-            kadastr = Kadastr()
+            kadastr = Kadastr(user=request.user)
             response = kadastr.getPropertyPDF(
                 form.cleaned_data.get('eni_code'))
             if response:

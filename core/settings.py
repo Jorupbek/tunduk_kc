@@ -16,18 +16,12 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', False)
-CLIENT_ID = os.getenv('CLIENT_ID')
-IP_ADDR = os.getenv('IP_ADDR')
-MEMBER_CODE = os.getenv('MEMBER_CODE')
-SUBSYSTEM_CODE = os.getenv('SUBSYSTEM_CODE')
-INFOCOM_SECRET_KEY = os.getenv('INFOCOM_SECRET_KEY')
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(' ')
 
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +38,7 @@ INSTALLED_APPS = [
     # my apps
     'apps.accounts.apps.AccountsConfig',
     'apps.history.apps.HistoryConfig',
+    'apps.tunduk.apps.TundukConfig',
 ]
 
 MIDDLEWARE = [
@@ -147,7 +142,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-from .jazzmin_settings import *
 from .ckeditor_settings import *
 
 if DEBUG:

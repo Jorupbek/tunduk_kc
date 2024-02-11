@@ -1,7 +1,6 @@
 import requests
 
 from utils.abstract_class.abstract_tunduk_system import TundukSystem
-from core.settings import INFOCOM_SECRET_KEY, CLIENT_ID, IP_ADDR
 
 
 class Infocom(TundukSystem):
@@ -11,8 +10,14 @@ class Infocom(TundukSystem):
     service_amount = 0
     xmlns = "prod"
     xmlns_url = "http://tunduk-seccurity-infocom.x-road.fi/producer"
-    sanarip_addr = f'http://{IP_ADDR}/r1/central-server/GOV/70000050/sanaripaymak-service/address-fact/'
-    sanarip_family = f'http://{IP_ADDR}/r1/central-server/GOV/70000050/sanaripaymak-service/family-members/'
+
+    @property
+    def sanarip_addr(self):
+        return f'http://{self.user.company.ip_addr}/r1/central-server/GOV/70000050/sanaripaymak-service/address-fact/'
+
+    @property
+    def sanarip_family(self):
+        return f'http://{self.user.company.ip_addr}/r1/central-server/GOV/70000050/sanaripaymak-service/family-members/'
 
     def createbankPinServiceRequest(self, inn, passport_series, passport_number):
         """
@@ -20,8 +25,8 @@ class Infocom(TundukSystem):
         """
         data = f"""
                 <prod:request>
-                    <prod:clientid>{CLIENT_ID}</prod:clientid>
-                    <prod:secret>{INFOCOM_SECRET_KEY}</prod:secret>
+                    <prod:clientid>{self.user.company.client_id}</prod:clientid>
+                    <prod:secret>{self.user.company.infocom_secret_key}</prod:secret>
                     <prod:pin>{inn}</prod:pin>
                     <prod:series>{passport_series}</prod:series>
                     <prod:number>{passport_number}</prod:number>
@@ -34,7 +39,7 @@ class Infocom(TundukSystem):
         response = requests.request(
             method='GET',
             url=f'{url}{inn}',
-            headers=self.HEADERS
+            headers=self.get_headers
         )
 
         return response

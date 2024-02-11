@@ -41,3 +41,8 @@ class TundukRequestLogAdmin(admin.ModelAdmin):
 
     def has_module_permission(self, request):
         return request.user.is_superuser
+
+    def user_company(self, obj):
+        return obj.user.company
+
+    user_company.short_description = 'КС пользователя'

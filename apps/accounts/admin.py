@@ -10,9 +10,10 @@ from .models import CustomUser
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
-    list_display = ['id', 'username', 'first_name', 'last_name', 'date_joined']
+    list_display = ['id', 'username', 'first_name', 'last_name', 'company', 'date_joined']
+    list_display_links = ['id', 'username', 'first_name', 'last_name', 'company', 'date_joined']
     fieldsets = (
-        (None, {"fields": ("username", "password")}),
+        (None, {"fields": ("username", "password", "company")}),
         (
             _("Personal info"),
             {
