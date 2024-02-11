@@ -23,6 +23,17 @@ from utils.utils import byte_to_file
 class TundukController(LoginRequiredMixin, TemplateView):
     template_name = 'tunduk/controller.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Retrieve messages from the messages framework
+        messages_list = messages.get_messages(self.request)
+
+        # Pass the messages to the context
+        context['messages'] = messages_list
+
+        return context
+
 
 class PersonalInfo(LoginRequiredMixin, TemplateView):
     template_name = 'tunduk/personal_info.html'

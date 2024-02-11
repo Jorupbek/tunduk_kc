@@ -3,7 +3,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 
+from apps.accounts.views import reset_password_view
+
 urlpatterns = [
+    path('upr/admin/accounts/reset-password/<int:user_id>/', reset_password_view, name='reset_password'),
     path('upr/admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('apps.accounts.urls')),
