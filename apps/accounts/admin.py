@@ -14,6 +14,7 @@ class CustomUserAdmin(UserAdmin):
     form = CustomUserChangeForm
     list_display = ['id', 'username', 'first_name', 'last_name', 'company',]
     list_display_links = ['id', 'username', 'first_name', 'last_name', 'company',]
+    list_filter = "company",
     fieldsets = (
         (None, {"fields": ("username", "password", "company")}),
         (
