@@ -106,7 +106,7 @@ class InfocomRequestedDetail(TundukAbstractClass):
 
         if form.is_valid():
             # Получение данных из СМЭВ Тундук
-            infocom = Infocom('bankPinService', request.user)
+            infocom = Infocom('bankPinService', user=request.user)
             result, response = infocom.post_bankPinService(form.cleaned_data)
 
             if response:
@@ -146,7 +146,7 @@ class UnaaRequestedDetail(TundukAbstractClass):
         form = INNForm(request.POST)
         if form.is_valid():
             # Получение данных из СМЭВ Тундук
-            unaa = Unaa('transportByPin')
+            unaa = Unaa('transportByPin', user=request.user)
             result, response = unaa.postTransportByPin(form.cleaned_data)
 
             if response:
@@ -181,7 +181,7 @@ class MinjystRequestedDetail(TundukAbstractClass):
         form = INNForm(request.POST)
         if form.is_valid():
             # Получение данных из СМЭВ Тундук
-            minjyst = Minjyst('getSubjectByTin', version=None)
+            minjyst = Minjyst('getSubjectByTin', version=None, user=request.user)
             result, response = minjyst.postSubjectByTin(form.cleaned_data)
 
             if response:
@@ -254,7 +254,7 @@ class MinSelXozRequestedDetail(TundukAbstractClass):
 
         if form.is_valid():
             # Получение данных из СМЭВ Тундук
-            minselxoz = MinSelXoz('Data')
+            minselxoz = MinSelXoz('Data', request.user)
             result, response = minselxoz.post_animal_data_from_inn(form.cleaned_data)
 
             if response:
